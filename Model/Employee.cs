@@ -17,6 +17,7 @@ namespace WebAPICoreSQL.Model
         public string City { get; set; }
         [JsonIgnore]
         public string State { get; set; }
+        public string FormattedName { get; set; }
 
         public Employee(int id, string firstname, string lastName, string department, Location location) { 
         
@@ -26,7 +27,7 @@ namespace WebAPICoreSQL.Model
             Department=department;
             BranchLocation=location;
             City=location.City;
-            State=location.State;
+            State=location.State;  
         }
         public Employee() { }
     }

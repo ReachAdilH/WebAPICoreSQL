@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebAPICoreSQL.Data;
+using WebAPICoreSQL.Extensions;
 using WebAPICoreSQL.Model;
 
 namespace WebAPICoreSQL.Controllers
@@ -29,6 +30,9 @@ namespace WebAPICoreSQL.Controllers
         {
             var employee = _appDbContext.Employee.Where(x=> x.Id == id)
                 .Select(x=> new Employee(x.Id, x.FirstName, x.LastName, x.Department,  new Location(x.City, x.State))).FirstOrDefault();
+            var formattedName = employee.GetFormattedName();
+            var briefInfo = employee.GetBriefInfo();
+            employee.FormattedName = formattedName;
             if (employee == null)
             {
                 return NotFound();
