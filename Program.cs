@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using WebAPICoreSQL.Data;
+using WebAPICoreSQL.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(Options => Options.UseSqlServer("Ser
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<EmployeeFilterService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>

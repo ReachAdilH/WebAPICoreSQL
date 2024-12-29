@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebAPICoreSQL.Data;
+using WebAPICoreSQL.DelegateFilter;
 using WebAPICoreSQL.Extensions;
 using WebAPICoreSQL.Model;
+using WebAPICoreSQL.Service;
 
 namespace WebAPICoreSQL.Controllers
 {
@@ -10,9 +12,11 @@ namespace WebAPICoreSQL.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        public EmployeesController(AppDbContext appDbContext)
+        private readonly EmployeeFilterService _employeeFilterService;
+        public EmployeesController(AppDbContext appDbContext, EmployeeFilterService employeeFilterService)
         {
             _appDbContext = appDbContext;
+            _employeeFilterService = employeeFilterService;
         }
 
         [HttpGet]
@@ -39,6 +43,19 @@ namespace WebAPICoreSQL.Controllers
             }
             return Ok(employee);
         }
-
+        [HttpGet("filter-by-department")]
+        public IActionResult GetEmployeeByDepartment([FromQuery] string department)
+        {
+            EmployeeFilter employeeFilter = e => e.Department.Equals(department, StringComparison.OrdinalIgnoreCase);
+            var filteredEmployee = _employeeFilterService.GetFilteredEmployees(employeeFilter);
+            return Ok(filteredEmployee);    
+        }
+        [HttpGet("filter-by-City")]
+        public IActionResult GetEmployeeByCity([FromQuery] string city)
+        {
+            EmployeeFilter employeeFilter = e => e.City.Equals(city, StringComparison.OrdinalIgnoreCase);
+            var filteredEmployee = _employeeFilterService.GetFilteredEmployees(employeeFilter);
+            return Ok(filteredEmployee);
+        }
     }
 }
