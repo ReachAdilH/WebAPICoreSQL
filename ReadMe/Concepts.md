@@ -3,5 +3,6 @@
 3.entity framework
 4.database connection
 5.Extension Method (FirstName+lastname)
-6.JWT token Auth
-7.Logging at DB
+6.Delegate Filter (By Department, By Location)
+7.JWT token Auth
+8.Logging at DB
