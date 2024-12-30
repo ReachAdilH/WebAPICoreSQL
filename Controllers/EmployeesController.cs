@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebAPICoreSQL.Data;
 using WebAPICoreSQL.DelegateFilter;
 using WebAPICoreSQL.Extensions;
@@ -20,6 +21,7 @@ namespace WebAPICoreSQL.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("all")]
         public IActionResult GetAllEmployees()
         {
