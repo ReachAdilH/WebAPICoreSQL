@@ -11,6 +11,7 @@ namespace WebAPICoreSQL.Data
 
         public DbSet<Product> Product { get; set; }
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Log> Log { get; set; }
 
     }
 }

@@ -36,6 +36,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ILoggerService, LoggerService>();
 builder.Services.AddScoped<EmployeeFilterService>();
 builder.Services.AddCors(options =>
 {

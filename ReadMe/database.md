@@ -11,7 +11,7 @@ INSERT INTO Product( Name, ListPrice) values
 
 Select * from Product
 
-
+ --------------------------------------------------------------------
 create table Employee (
   Id INT IDENTITY(1,1) PRIMARY KEY,
   Name VARCHAR(50) not null ,
@@ -27,7 +27,22 @@ INSERT into Employee ( Name, Department, City, State)  values
      ('Jane Smith', 'IT', 'Dallas', 'Texas'),
    ( 'Robert Johnson', 'Finance', 'Seattle', 'Washington') ;
 
+    --------------------------------------------------------------------
 
    Exec sp_rename 'Employee.Name' , 'FirstName' , 'COLUMN'
 
     Alter table Employee Add LastName VARCHAR(50)
+
+    --------------------------------------------------------------------
+
+      CREATE Table Log(
+   Id int Identity(1,1) primary key,
+   CorrelationId uniqueidentifier not null,
+   ApplicationName Nvarchar(100) not null,
+   MethodName Nvarchar(100),
+   Message Nvarchar(Max),
+   Exception Nvarchar(Max),
+   LoggedAt Datetime default Getdate()
+   );
+
+    --------------------------------------------------------------------
